@@ -1,0 +1,39 @@
+﻿@model EfCore.Models.ViewModel.CreateProductViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-10">
+        <h4>Create New Product</h4>
+        <form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label>Title</label>
+                <input asp-for="Title"/>
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <img src="~/Images/images.jpg" width="80" height="80" class="change_edit" />
+                <input type="file" asp-for="UrlImage"/>
+                <span asp-validation-for="UrlImage"></span>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input asp-for="Price"/>
+                <span asp-validation-for="Price"></span>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select asp-for="CategoryId" asp-items="@ViewBag.Categories">
+                    <option value="">Select Category</option>
+                </select>
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="from-group">
+                <input type="submit" name="submit" style="width:auto" value="Add Product"/>
+            </div>
+        </form>
+    </div>
+</div>

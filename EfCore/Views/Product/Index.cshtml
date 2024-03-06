@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Product List</h1>
+<div>
+    <div >
+        <a asp-controller="Product" asp-action="Create">Add New Product</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th>Product Title</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductId</td>
+                         <td>@item.Title</td>
+                        <td>@item.Price</td>
+                        <td>@item.Category.CategoryName</td>
+                        <td><img src="~/Images/@item.UrlImage"width="80" height="80" /></td>
+                        <td>
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.ProductId" onclick="return confirm ('Are You sure to delete this record?')">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
